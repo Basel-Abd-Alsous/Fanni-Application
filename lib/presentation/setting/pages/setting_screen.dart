@@ -11,7 +11,9 @@ import '../../../core/services/hive_services/user_flow.dart';
 import '../../../injection_container.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../l10n/controller/localization.cubit.dart';
+import '../../customer_flow/layout/domain/model/customer_profile_model.dart';
 import '../../customer_flow/layout/widget/widget_layout.dart';
+import '../../provider_flow/layout/domain/model/merchant_profile_model.dart';
 import '../../provider_flow/layout/widget/widget_layout.dart';
 import '../controller/setting_cubit.dart';
 import '../widgets/widget_setting_card.dart';
@@ -68,6 +70,8 @@ class SettingScreen extends StatelessWidget {
                         haveArrow: false,
                         onTap: () {
                           sl<Box>(instanceName: BoxKeys.appBox).delete(BoxKeys.usertoken);
+                          sl<Box<MerchantProfile>>().delete(BoxKeys.merchantData);
+                          sl<Box<CustomerProfile>>().delete(BoxKeys.userData);
                           sl<FirebaseMessaging>().unsubscribeFromTopic('users');
                           sl<FirebaseMessaging>().unsubscribeFromTopic('merchants');
                           context.go(RouterKey.auth);

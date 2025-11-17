@@ -17,6 +17,8 @@ import '../../../l10n/app_localizations.dart';
 import '../../../main.dart';
 import '../../auth/domain/model/param/otp_param.dart';
 import '../../auth/domain/usecase/auth_usecase.dart';
+import '../../customer_flow/layout/domain/model/customer_profile_model.dart';
+import '../../provider_flow/layout/domain/model/merchant_profile_model.dart';
 import '../domain/usecase/setting_usecase.dart';
 
 part 'setting_state.dart';
@@ -62,6 +64,8 @@ class SettingCubit extends Cubit<SettingState> {
             onConfirm: () {
               SmartDialog.dismiss();
               sl<Box>(instanceName: BoxKeys.appBox).delete(BoxKeys.usertoken);
+              sl<Box<MerchantProfile>>().delete(BoxKeys.merchantData);
+              sl<Box<CustomerProfile>>().delete(BoxKeys.userData);
               sl<FirebaseMessaging>().unsubscribeFromTopic('users');
               sl<FirebaseMessaging>().unsubscribeFromTopic('merchants');
               GlobalContext.context.go(RouterKey.auth);
