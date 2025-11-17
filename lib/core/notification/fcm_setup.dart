@@ -24,12 +24,10 @@ class FcmHelper {
         token = await sl<FirebaseMessaging>().getAPNSToken();
         log('APNST Token :- $token');
         sl<Box>(instanceName: BoxKeys.appBox).put(BoxKeys.fcmtoken, token);
-        sl<FirebaseMessaging>().subscribeToTopic('users');
       } else {
         token = await sl<FirebaseMessaging>().getToken();
         log('FCM Token :- $token');
         sl<Box>(instanceName: BoxKeys.appBox).put(BoxKeys.fcmtoken, token);
-        sl<FirebaseMessaging>().subscribeToTopic('users');
       }
       FirebaseMessaging.onMessage.listen(_fcmForegroundHandler);
       FirebaseMessaging.onBackgroundMessage(_fcmBackgroundHandler);

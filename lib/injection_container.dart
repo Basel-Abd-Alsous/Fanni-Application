@@ -54,7 +54,8 @@ final sl = GetIt.instance;
 
 Future<void> init() async {
   // * ======================== Hive  ========================================
-  sl.registerLazySingleton(() => sl<HiveServices>().init());
+  sl.registerLazySingleton<HiveServices>(() => HiveServices());
+  await sl<HiveServices>().init(); 
   // * ======================== Notifications  ========================================
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   sl.registerSingleton<FirebaseMessaging>(FirebaseMessaging.instance);

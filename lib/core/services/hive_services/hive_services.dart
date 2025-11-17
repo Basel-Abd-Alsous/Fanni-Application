@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import '../../../injection_container.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../../../presentation/customer_flow/layout/domain/model/customer_profile_model.dart';
@@ -9,10 +11,23 @@ class HiveServices {
   Future<void> init() async {
     await Hive.initFlutter();
     _registerAdapters();
-    _initializeBoxModel<MerchantProfile>(boxName: BoxKeys.merchantData);
-    _initializeBoxModel<UserFlow>(boxName: BoxKeys.userFlow);
-    _initializeBoxModel<CustomerProfile>(boxName: BoxKeys.userData);
+    await _initializeBoxModel<MerchantProfile>(boxName: BoxKeys.merchantData);
+    await _initializeBoxModel<UserFlow>(boxName: BoxKeys.userFlow);
+    await _initializeBoxModel<CustomerProfile>(boxName: BoxKeys.userData);
+    checkHives();
     await Future.wait([_initAppBox()]);
+  }
+
+  void checkHives() {
+    sl.allReady().then((_) {
+      log("MerchantProfile : ${sl.isRegistered<Box<MerchantProfile>>()}");
+    });
+    sl.allReady().then((_) {
+      log("UserFlow : ${sl.isRegistered<Box<UserFlow>>()}");
+    });
+    sl.allReady().then((_) {
+      log("CustomerProfile : ${sl.isRegistered<Box<CustomerProfile>>()}");
+    });
   }
 
   void _registerAdapters() {

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -88,6 +89,11 @@ class AuthCubit extends Cubit<AuthState> {
       result.fold((failure) => emit(_ErrorLogin(message: failure.message)), (success) {
         sl<Box>(instanceName: BoxKeys.appBox).put(BoxKeys.usertoken, success.data!);
         sl<Box<UserFlow>>().put(BoxKeys.userFlow, userFlow);
+        if (userFlow == UserFlow.customer) {
+          sl<FirebaseMessaging>().subscribeToTopic('users');
+        } else {
+          sl<FirebaseMessaging>().subscribeToTopic('merchants');
+        }
         GlobalContext.context.go(userFlow == UserFlow.customer ? RouterKey.layoutCustomer : RouterKey.layoutProvider);
         emit(const _SuccessLogin());
       });
@@ -106,6 +112,7 @@ class AuthCubit extends Cubit<AuthState> {
           sl<Box>(instanceName: BoxKeys.appBox).put(BoxKeys.usertoken, success.data!);
           sl<Box<UserFlow>>().put(BoxKeys.userFlow, userFlow);
           GlobalContext.context.go(RouterKey.layoutCustomer);
+          sl<FirebaseMessaging>().subscribeToTopic('users');
         } else {
           SmartDialog.show(
             clickMaskDismiss: false,
@@ -135,7 +142,9 @@ class AuthCubit extends Cubit<AuthState> {
     if (!keyOTP.currentState!.validate()) return;
     try {
       emit(const _LoadingVerify());
-      final result = await authUsecase.verifyOtp(OTPParam.fromJson({'phone': registerParam?.mobileNumber?.replaceAll('+', ''), 'otp': verifyOtp.text}));
+      final result = await authUsecase.verifyOtp(
+        OTPParam.fromJson({'phone': registerParam?.mobileNumber?.replaceAll('+', ''), 'otp': int.tryParse(verifyOtp.text)}),
+      );
       result.fold(
         (failure) {
           emit(_ErrorVerify(message: failure.message));

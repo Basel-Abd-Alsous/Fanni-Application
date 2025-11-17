@@ -21,7 +21,7 @@ class SplashCubit extends Cubit<SplashState> {
   Future<String> _getRoute() async {
     bool intro = sl<Box>(instanceName: BoxKeys.appBox).get(BoxKeys.intro, defaultValue: false);
     String usertoken = sl<Box>(instanceName: BoxKeys.appBox).get(BoxKeys.usertoken, defaultValue: '');
-    UserFlow? userFlow = sl<Box<UserFlow>>().get(BoxKeys.userFlow, defaultValue: UserFlow.customer) as UserFlow;
+    UserFlow? userFlow = sl<Box<UserFlow>>().get(BoxKeys.userFlow, defaultValue: UserFlow.customer);
     if (intro == false) {
       return RouterKey.introduction;
     } else {

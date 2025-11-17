@@ -17,7 +17,6 @@ import 'core/router/router_page.dart';
 import 'core/theme/controller/theme_cubit.dart';
 import 'l10n/controller/localization.cubit.dart';
 import 'core/services/hive_services/box_kes.dart';
-import 'core/services/hive_services/hive_services.dart';
 import 'presentation/provider_flow/layout/controller/layout_cubit.dart';
 import 'presentation/customer_flow/layout/controller/layout_customer_cubit.dart';
 
@@ -26,7 +25,6 @@ var logger = Logger(printer: PrettyPrinter(methodCount: 2, errorMethodCount: 8, 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  await HiveServices().init();
   await init();
   HttpOverrides.global = MyHttpOverrides();
   runApp(const MyApp());

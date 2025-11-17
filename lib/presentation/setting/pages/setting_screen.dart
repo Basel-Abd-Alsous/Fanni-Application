@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -67,6 +68,8 @@ class SettingScreen extends StatelessWidget {
                         haveArrow: false,
                         onTap: () {
                           sl<Box>(instanceName: BoxKeys.appBox).delete(BoxKeys.usertoken);
+                          sl<FirebaseMessaging>().unsubscribeFromTopic('users');
+                          sl<FirebaseMessaging>().unsubscribeFromTopic('merchants');
                           context.go(RouterKey.auth);
                         },
                       ),

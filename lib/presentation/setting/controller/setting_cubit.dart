@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -60,6 +61,9 @@ class SettingCubit extends Cubit<SettingState> {
             confirmText: local.delete,
             onConfirm: () {
               SmartDialog.dismiss();
+              sl<Box>(instanceName: BoxKeys.appBox).delete(BoxKeys.usertoken);
+              sl<FirebaseMessaging>().unsubscribeFromTopic('users');
+              sl<FirebaseMessaging>().unsubscribeFromTopic('merchants');
               GlobalContext.context.go(RouterKey.auth);
             },
           ),
