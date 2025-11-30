@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 import '../../../../../core/constant/app_image.dart';
 import '../../../../../core/context/global.dart';
 import '../../../../../core/extension/gap.dart';
 import '../../../../../core/loading/loading_category_home.dart';
+import '../../../../../core/services/hive_services/box_kes.dart';
 import '../../../../../core/unit/app_color.dart';
 import '../../../../../core/unit/app_text_style.dart';
 import '../../../../../core/widget/widget_empty.dart';
@@ -57,9 +60,33 @@ class ContainerHomeCategory extends StatelessWidget {
             } else {
               return InkWell(
                 onTap: () => context.read<LayoutCustomerCubit>().changeIndex(1),
-                child: Card(
-                  color: AppColor.primaryColor,
-                  child: Center(child: Text(local.seeAll, style: AppTextStyle.style13B.copyWith(color: AppColor.white))),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: AppColor.white,
+                    border: Border.all(color: AppColor.primaryColor.withOpacity(0.6)),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      spacing: 10,
+                      children: [
+                        Text(local.seeAll, style: AppTextStyle.style13B.copyWith(color: AppColor.primaryColor)),
+                        ValueListenableBuilder(
+                          valueListenable: sl<Box>(instanceName: BoxKeys.appBox).listenable(),
+                          builder: (context, value, _) {
+                            String lang = value.get(BoxKeys.lang, defaultValue: 'ar');
+                            return Directionality(
+                              textDirection: lang == 'en' ? TextDirection.rtl : TextDirection.ltr,
+                              child: Icon(Icons.arrow_back, color: AppColor.primaryColor),
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               );
             }

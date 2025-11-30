@@ -27,7 +27,7 @@ class AllProvidersScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => sl<MerchantsCubit>()..getAllProviders(catId: catId),
       child: Scaffold(
-        appBar: AppBar(centerTitle: true, title: Text(title ?? local.electricians, style: AppTextStyle.style16B)),
+        appBar: AppBar(centerTitle: true, title: Text(title ?? local.electricians, style: AppTextStyle.style16B.copyWith(color: AppColor.primaryColor))),
         body: BlocBuilder<MerchantsCubit, MerchantsState>(
           builder: (context, state) {
             return Padding(

@@ -128,16 +128,21 @@ class InfoTile extends StatelessWidget {
     return Expanded(
       flex: flex ?? 1,
       child: Container(
+        alignment: Alignment.center,
         padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 3),
         decoration: BoxDecoration(color: AppColor.white, borderRadius: BorderRadius.circular(10), border: Border.all(color: AppColor.border)),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           spacing: 5,
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               spacing: 4,
               children: [
                 svg != null ? SvgPicture.asset(svg!, width: 20, color: AppColor.primaryColor) : Icon(icon, size: 20, color: Colors.redAccent),
-                Expanded(child: Text(label, style: AppTextStyle.style10B, overflow: TextOverflow.ellipsis)),
+                Text(label, style: AppTextStyle.style10B, overflow: TextOverflow.ellipsis),
               ],
             ),
             Text('$count', style: AppTextStyle.style16B.copyWith(color: AppColor.primaryColor)),

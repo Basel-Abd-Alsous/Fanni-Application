@@ -91,7 +91,7 @@ class WidgetReviewsCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: const [WidgetLoading(width: double.infinity), WidgetLoading(width: double.infinity), WidgetLoading(width: 80)],
                   )
-                  : Text(reviewText ?? '- - - -', style: AppTextStyle.style12),
+                  : Text(reviewText ?? '- - - -', maxLines: 3, overflow: TextOverflow.ellipsis, style: AppTextStyle.style12),
             ],
           ),
         ),

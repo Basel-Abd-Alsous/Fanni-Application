@@ -38,47 +38,43 @@ class ContainerProfile extends StatelessWidget with FormValidationMixin {
                   suffixIcon: const Icon(Icons.camera_alt_outlined, color: AppColor.grey),
                   onTap: () => context.read<ProfileProviderCubit>().selectMultiPhotoOfWork(),
                 ),
+                10.gap,
                 ValueListenableBuilder(
                   valueListenable: context.read<ProfileProviderCubit>().photoOfWork,
                   builder: (context, images, child) {
-                    return Column(
-                      children: [
-                        10.gap,
-                        SizedBox(
-                          height: (images.length / 3).ceil() * 110,
-                          child: GridView.builder(
-                            physics: const NeverScrollableScrollPhysics(),
-                            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 3,
-                              mainAxisSpacing: 10,
-                              crossAxisSpacing: 10,
-                              childAspectRatio: 1,
-                            ),
-                            itemCount: images.length,
-                            itemBuilder: (context, index) {
-                              final image = images[index];
-                              return Container(
-                                clipBehavior: Clip.antiAliasWithSaveLayer,
-                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
-                                child: Stack(
-                                  alignment: Alignment.topLeft,
-                                  children: [
-                                    WidgetCachNetworkImage(image: image, radius: 15),
-                                    InkWell(
-                                      onTap: () => context.read<ProfileProviderCubit>().deleteWorkImage(index),
-                                      child: Container(
-                                        padding: const EdgeInsets.all(5),
-                                        decoration: const BoxDecoration(color: AppColor.red, shape: BoxShape.circle),
-                                        child: Icon(Icons.delete, color: AppColor.white, size: 16),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              );
-                            },
-                          ),
+                    return SizedBox(
+                      height: (images.length / 3).ceil() * 130,
+                      child: GridView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3,
+                          mainAxisSpacing: 10,
+                          crossAxisSpacing: 10,
+                          childAspectRatio: 1,
                         ),
-                      ],
+                        itemCount: images.length,
+                        itemBuilder: (context, index) {
+                          final image = images[index];
+                          return Container(
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+                            child: Stack(
+                              alignment: Alignment.topLeft,
+                              children: [
+                                WidgetCachNetworkImage(image: image, radius: 15),
+                                InkWell(
+                                  onTap: () => context.read<ProfileProviderCubit>().deleteWorkImage(index),
+                                  child: Container(
+                                    padding: const EdgeInsets.all(5),
+                                    decoration: const BoxDecoration(color: AppColor.red, shape: BoxShape.circle),
+                                    child: Icon(Icons.delete, color: AppColor.white, size: 16),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
                     );
                   },
                 ),
