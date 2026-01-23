@@ -1,4 +1,4 @@
-package com.example.fanni
+package com.fanni.app
 
 import io.flutter.embedding.android.FlutterActivity
 

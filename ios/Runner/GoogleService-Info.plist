@@ -9,7 +9,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.fanni</string>
+	<string>com.fanni.app</string>
 	<key>PROJECT_ID</key>
 	<string>fanni-3c674</string>
 	<key>STORAGE_BUCKET</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:447434940181:ios:1146e7efca2524c8a1131c</string>
+	<string>1:447434940181:ios:844626b92f94fe7ea1131c</string>
 </dict>
 </plist>

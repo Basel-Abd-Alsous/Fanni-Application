@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:447434940181:android:9628c69425b2e1a7a1131c",
+        "mobilesdk_app_id": "1:447434940181:android:2a5c2cbb51502a89a1131c",
         "android_client_info": {
-          "package_name": "com.example.fanni"
+          "package_name": "com.fanni.app"
         }
       },
       "oauth_client": [],
