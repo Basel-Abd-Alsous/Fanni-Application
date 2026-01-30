@@ -191,6 +191,12 @@ abstract class AppLocalizations {
   /// **'Password cannot be empty'**
   String get passwordEmpty;
 
+  /// No description provided for @youmostbeloginforshowthissection.
+  ///
+  /// In en, this message translates to:
+  /// **'You most be login for show this section!'**
+  String get youmostbeloginforshowthissection;
+
   /// No description provided for @passwordLength.
   ///
   /// In en, this message translates to:
@@ -232,6 +238,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Login'**
   String get login;
+
+  /// No description provided for @containueAsGust.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue As Guest'**
+  String get containueAsGust;
 
   /// No description provided for @loading.
   ///

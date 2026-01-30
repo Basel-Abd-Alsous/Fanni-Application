@@ -83,20 +83,14 @@ class ContainerAuth extends StatelessWidget with FormValidationMixin {
                         controller: context.read<AuthCubit>().password,
                         validator: (value) => validatePassword(context, value),
                         prefixIcon: const Icon(Icons.lock_open),
-                        suffixIcon: IconButton(
-                          onPressed: () => context.read<AuthCubit>().changeVisablePassword(),
-                          icon: Icon(value == true ? Icons.visibility_off : Icons.visibility_sharp),
-                        ),
+                        suffixIcon: IconButton(onPressed: () => context.read<AuthCubit>().changeVisablePassword(), icon: Icon(value == true ? Icons.visibility_off : Icons.visibility_sharp)),
                       ),
                 ),
                 if (!isRegister) ...[
                   10.gap,
-                  InkWell(
-                    onTap: () => context.pushReplacement(RouterKey.forget),
-                    child: Text(local.forgetPassword, style: AppTextStyle.style13B.copyWith(color: AppColor.primaryColor)),
-                  ),
+                  InkWell(onTap: () => context.pushReplacement(RouterKey.forget), child: Text(local.forgetPassword, style: AppTextStyle.style13B.copyWith(color: AppColor.primaryColor))),
                 ],
-                25.gap,
+                15.gap,
                 Center(
                   child: AppButton.text(
                     width: AppSize(context).width * 0.8,
@@ -104,6 +98,21 @@ class ContainerAuth extends StatelessWidget with FormValidationMixin {
                     text: isRegister ? local.signUp : local.login,
                     onPressed: () => context.read<AuthCubit>().authButton(isRegister),
                   ),
+                ),
+                20.gap,
+
+                ValueListenableBuilder(
+                  valueListenable: sl<Box<UserFlow>>().listenable(),
+                  builder: (context, value, child) {
+                    UserFlow userFlow = value.get(BoxKeys.userFlow, defaultValue: UserFlow.customer) as UserFlow;
+                    return userFlow == UserFlow.vendor
+                        ? const SizedBox()
+                        : isRegister == true
+                        ? const SizedBox()
+                        : Center(
+                          child: InkWell(onTap: () => context.push(RouterKey.layoutCustomer), child: Text(local.containueAsGust, style: AppTextStyle.style14B.copyWith(color: AppColor.primaryColor))),
+                        );
+                  },
                 ),
                 const Spacer(),
                 Center(

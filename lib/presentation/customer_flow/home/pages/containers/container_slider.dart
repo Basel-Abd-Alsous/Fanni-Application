@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../../../core/constant/app_image.dart';
 import '../../../../../core/extension/gap.dart';
 import '../../../../../core/loading/loading_banners.dart';
 import '../../../../../core/unit/app_color.dart';
@@ -49,10 +47,7 @@ class ContainerSlider extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   clipBehavior: Clip.antiAliasWithSaveLayer,
                   decoration: BoxDecoration(color: AppColor.white, borderRadius: BorderRadius.circular(10)),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: WidgetCachNetworkImage(image: data[index].banner ?? '', width: double.infinity, hieght: 200, boxFit: BoxFit.cover),
-                  ),
+                  child: ClipRRect(borderRadius: BorderRadius.circular(10), child: WidgetCachNetworkImage(image: data[index].banner ?? '', width: double.infinity, hieght: 200, boxFit: BoxFit.cover)),
                 ),
               );
             },
@@ -69,11 +64,6 @@ class ContainerSlider extends StatelessWidget {
   }
 
   WidgetEmptyScreen _widgetEmptyOrErrorBanners({VoidCallback? onPressed, String? message}) {
-    return WidgetEmptyScreen(
-      title: 'No Banners Available',
-      desc: message ?? 'We couldn’t find any banners at the moment. Please check back later.',
-      icon: SvgPicture.asset(Assets.iconNotification, color: Colors.grey),
-      onPressed: onPressed,
-    );
+    return WidgetEmptyScreen(title: 'No Banners Available', desc: message ?? 'We couldn’t find any banners at the moment. Please check back later.', icon: const SizedBox(), onPressed: onPressed);
   }
 }

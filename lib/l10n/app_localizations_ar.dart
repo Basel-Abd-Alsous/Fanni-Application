@@ -57,6 +57,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get passwordEmpty => 'كلمة المرور لا يمكن أن تكون فارغة';
 
   @override
+  String get youmostbeloginforshowthissection => 'يجب عليك تسجيل الدخول لعرض هذا القسم!';
+
+  @override
   String get passwordLength => 'يجب أن تكون كلمة المرور 8 أحرف على الأقل';
 
   @override
@@ -76,6 +79,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get login => 'تسجيل الدخول';
+
+  @override
+  String get containueAsGust => 'متابعة كزائر';
 
   @override
   String get loading => 'جارٍ التحميل...';

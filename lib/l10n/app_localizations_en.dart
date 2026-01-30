@@ -57,6 +57,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get passwordEmpty => 'Password cannot be empty';
 
   @override
+  String get youmostbeloginforshowthissection => 'You most be login for show this section!';
+
+  @override
   String get passwordLength => 'Password must be at least 8 characters';
 
   @override
@@ -76,6 +79,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get login => 'Login';
+
+  @override
+  String get containueAsGust => 'Continue As Guest';
 
   @override
   String get loading => 'Loading...';
