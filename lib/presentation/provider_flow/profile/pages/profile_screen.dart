@@ -32,11 +32,7 @@ class ProfileScreen extends StatelessWidget {
                   leading: IconButton(onPressed: () => context.go(RouterKey.layoutProvider), icon: Text(local.skip, style: AppTextStyle.style12B)),
                 ),
         body: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [const WidgetVendorImages(), 40.gap, ContainerProfile()],
-          ),
+          child: Column(mainAxisAlignment: MainAxisAlignment.start, crossAxisAlignment: CrossAxisAlignment.start, children: [const WidgetVendorImages(), 40.gap, ContainerProfile()]),
         ),
         bottomNavigationBar: BlocBuilder<ProfileProviderCubit, ProfileProviderState>(
           builder: (context, state) {
@@ -50,7 +46,6 @@ class ProfileScreen extends StatelessWidget {
                       child: AppButton.text(
                         loading: loading,
                         text: local.update,
-
                         onPressed: () {
                           FocusScope.of(context).unfocus();
                           context.read<ProfileProviderCubit>().updateProfile();

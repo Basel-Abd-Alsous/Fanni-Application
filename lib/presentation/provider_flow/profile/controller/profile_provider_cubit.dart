@@ -29,9 +29,8 @@ class ProfileProviderCubit extends Cubit<ProfileProviderState> {
   final LayoutProviderUsecase layoutUsecase;
   final ProfileProviderUsecase usecase;
   ProfileProviderCubit({required this.layoutUsecase, required this.usecase}) : super(const ProfileProviderState.initial()) {
-    Future.wait([getAllCities(), getAllMajor()]).whenComplete(() {
-      getProfile();
-    });
+    getProfile();
+    Future.wait([getAllCities(), getAllMajor()]).whenComplete(() {});
   }
 
   final keyProviderInfo = GlobalKey<FormState>();

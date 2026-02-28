@@ -62,16 +62,11 @@ class WidgetDropdownField<T> extends StatelessWidget {
             prefixIcon: prefixIcon,
             hintText: hintText,
             hintStyle: hintStyle ?? AppTextStyle.style14B.copyWith(fontFamily: 'Jannalt'),
-            suffixIcon: suffixIcon ?? const Icon(Icons.arrow_drop_down),
             border:
                 border ??
                 (haveBorder == false
                     ? InputBorder.none
-                    : OutlineInputBorder(
-                      gapPadding: 0,
-                      borderSide: BorderSide(color: Theme.of(context).colorScheme.primary),
-                      borderRadius: BorderRadius.circular(radius ?? 7),
-                    )),
+                    : OutlineInputBorder(gapPadding: 0, borderSide: BorderSide(color: Theme.of(context).colorScheme.primary), borderRadius: BorderRadius.circular(radius ?? 7))),
             focusedBorder:
                 border ??
                 OutlineInputBorder(
